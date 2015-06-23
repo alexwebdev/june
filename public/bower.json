@@ -1,0 +1,23 @@
+{
+  "name": "june",
+  "version": "0.0.1",
+  "authors": [
+    "alexwebdev <aleksander.soja@gmail.com>"
+  ],
+  "description": "cool project",
+  "moduleType": [
+    "es6"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.1",
+    "bootstrap-css": "~3.3.4"
+  }
+}
