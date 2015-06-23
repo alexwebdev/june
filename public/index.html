@@ -8,9 +8,22 @@
 	<script src="js/module.js"></script>
 </head>
 <body>
-	<div class="container">
+	<div class="container" ng-controller="mainCtrl">
 		<div class="panel">
 			<h3 class="panel-header">Products</h3>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Product name</th>
+						<th>Category</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="item in products">
+						<td>{{item.name}}</td>
+						<td>{{item.category}}</td>
+					</tr>
+			</table>
 		</div>
 	</div>
 </body>
