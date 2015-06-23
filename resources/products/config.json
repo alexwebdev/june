@@ -16,6 +16,14 @@
 			"required": true,
 			"id": "category",
 			"order": 1
+		},
+		"brand": {
+			"name": "brand",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "brand",
+			"order": 2
 		}
 	}
 }
