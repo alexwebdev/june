@@ -6,39 +6,31 @@
 	<link rel="stylesheet" href="bower_components/bootstrap-css/css/bootstrap.css" />
 	<link rel="stylesheet" href="bower_components/bootstrap-css/css/bootstrap-theme.css" />
 	<script src="js/module.js"></script>
+	<script src="js/apiSrv.js"></script>
 </head>
 <body>
-	<div class="container" ng-controller="mainCtrl">
+	<div class="container" ng-controller="mbtaCtrl">
 		<div class="panel">
+
+			<button ng-click="getModes()">kliknij</button>
 			<div class="row">
 				<div class="col-xs-3 panel">
-					<h3 class="panel-header">Filters</h3>
-					<div ng-repeat="filter in filters">
-						<label>
-							<input type="checkbox" ng-model="filter.checked">
-							{{filter.name}}
-						</label>
+					<h3 class="panel-header">Select mode</h3>
+					<div class="btn-group-vertical">
+						<button class="btn btn-default" ng-repeat="mode in modes" ng-click="selectMode(mode)">{{mode.mode_name}}</button>
 					</div>
 				</div>
 				<div class="col-xs-9 panel">
-					<h3 class="panel-header">Products</h3>
-					<div class="well">
-						<h3>Selected filters:</h3>
-						<button class="btn btn-primary" ng-repeat="filter in filters | filter:{checked:true}" ng-click="removeFilter(filter)">{{filter.name}} (usuń)</button>
-					</div>
-					<table class="table table-striped">
+					<h3 class="panel-header">Routes ({{selectedMode.mode_name}})</h3>
+					<table class="table table-striped table-hover">
 						<thead>
 							<tr>
-								<th>Product name</th>
-								<th>Category</th>
-								<th>Brand</th>
+								<th>Route name</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="item in products">
-								<td>{{item.name}}</td>
-								<td>{{item.category}}</td>
-								<td>{{item.brand}}</td>
+							<tr ng-repeat="route in selectedMode.route" ng-click="selectRoute(route)">
+								<td>{{route.route_name}}</td>
 							</tr>
 						</tbody>
 					</table>
