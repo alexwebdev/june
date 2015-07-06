@@ -3,10 +3,13 @@
 <head>
 	<title>Cool App</title>
 	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/angular-resource/angular-resource.js"></script>
+	<script src="bower_components/underscore/underscore.js"></script>
 	<link rel="stylesheet" href="bower_components/bootstrap-css/css/bootstrap.css" />
 	<link rel="stylesheet" href="bower_components/bootstrap-css/css/bootstrap-theme.css" />
 	<script src="js/module.js"></script>
 	<script src="js/apiSrv.js"></script>
+	<script src="js/filters.js"></script>
 </head>
 <body>
 	<div class="container" ng-controller="mbtaCtrl">
@@ -20,7 +23,7 @@
 						<button class="btn btn-default" ng-repeat="mode in modes" ng-click="selectMode(mode)">{{mode.mode_name}}</button>
 					</div>
 				</div>
-				<div class="col-xs-9 panel">
+				<div class="col-xs-4 panel">
 					<h3 class="panel-header">Routes ({{selectedMode.mode_name}})</h3>
 					<table class="table table-striped table-hover">
 						<thead>
@@ -31,6 +34,16 @@
 						<tbody>
 							<tr ng-repeat="route in selectedMode.route" ng-click="selectRoute(route)">
 								<td>{{route.route_name}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-xs-5 panel">
+					<h3 class="panel-header">Stops</h3>
+					<table class="table table-striped table-hover">
+						<tbody>
+							<tr ng-repeat="stop in stops">
+								<td>{{stop.stop_name}}</td>
 							</tr>
 						</tbody>
 					</table>

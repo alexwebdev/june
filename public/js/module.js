@@ -33,9 +33,14 @@ angular.module('juneApp', [])
 	};
 
 	$scope.selectRoute = function(route) {
-		apiSrv.getScheduleByRoute(route.route_id).then(function(result) {
-			$scope.schedule = result.data;
-			console.log('schedule', result.data);
+		// apiSrv.getScheduleByRoute(route.route_id).then(function(result) {
+		// 	$scope.schedule = result.data;
+		// 	console.log('schedule', result.data);
+		// });
+
+		apiSrv.getStopsByRoute(route.route_id).then(function(result) {
+			console.log('stops', result.data);
+			$scope.stops = result.data.direction[0].stop;
 		});
 	};
 
