@@ -7,6 +7,19 @@ angular.module('juneApp')
 	};
 
 	return {
+		getLocations: function() {
+
+
+
+
+			// var promise = $http.get(baseUrl + 'locations', {params: {query: 'Basel'}})
+			// 	.success(function(data) {
+			// 		return data;
+			// 	});
+
+			// return promise;
+		},
+
 		getModes: function() {
 			var promise = $http.get(baseUrl + 'routes/', {params: params})
 				.success(function(data) {
