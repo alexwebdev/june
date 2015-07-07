@@ -8,6 +8,8 @@ angular.module('juneApp', ['ngResource'])
 })
 .controller('mbtaCtrl', function($scope, $http, baseUrl, apiSrv) {
 
+	$scope.selectedCategory = 'S';
+
 
 	// stationboard
 	$http.get(baseUrl + 'stationboard', {params: {station: 'Zürich'}})
@@ -15,11 +17,15 @@ angular.module('juneApp', ['ngResource'])
 			console.log('stationboard', data);
 			$scope.stationboard = data.stationboard;
 
-			$scope.types = _.uniq(_.pluck($scope.stationboard, 'category'));
-			console.log('types', $scope.types);
+			$scope.categories = _.uniq(_.pluck($scope.stationboard, 'category'));
+			console.log('types', $scope.categories);
 		});
 
 
+
+	$scope.categoryFilterFn = function(item) {
+		return $scope.selectedCategory === null || item.category === $scope.selectedCategory;
+	};
 
 
 });

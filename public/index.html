@@ -18,9 +18,10 @@
 			<button ng-click="getModes()">kliknij</button>
 			<div class="row">
 				<div class="col-xs-3 panel">
-					<h3 class="panel-header">Select type</h3>
-					<label ng-repeat="type in types" style="width:100%">
-						<input type="checkbox" />{{type}}
+					<h3 class="panel-header">Select category</h3>
+					<pre>{{selectedCategory}}</pre>
+					<label ng-repeat="category in categories" style="width:100%">
+						<input type="radio" ng-model="selectedCategory" value="{{category}}">{{category}}
 					</label>
 				</div>
 				<div class="col-xs-9 panel">
