@@ -12,7 +12,7 @@ angular.module('juneApp', ['ngResource'])
 
 
 	// stationboard
-	$http.get(baseUrl + 'stationboard', {params: {station: 'Zürich'}})
+	$http.get(baseUrl + 'stationboard', {params: {station: 'Zürich', transportation: ['ec_ic']}})
 		.success(function(data) {
 			console.log('stationboard', data);
 			$scope.stationboard = data.stationboard;
@@ -25,6 +25,11 @@ angular.module('juneApp', ['ngResource'])
 
 	$scope.categoryFilterFn = function(item) {
 		return $scope.selectedCategory === null || item.category === $scope.selectedCategory;
+	};
+
+
+	$scope.showDetails = function(item) {
+		$scope.passList = item.passList;
 	};
 
 
