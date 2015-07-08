@@ -12,7 +12,7 @@ angular.module('juneApp', ['ngResource'])
 
 
 	// stationboard
-	$http.get(baseUrl + 'stationboard', {params: {station: 'Zürich', transportation: ['ec_ic']}})
+	$http.get(baseUrl + 'stationboard', {params: {station: 'Zürich', 'transportations[]': ['ice_tgv_rj', 'ec_ic']}})
 		.success(function(data) {
 			console.log('stationboard', data);
 			$scope.stationboard = data.stationboard;
