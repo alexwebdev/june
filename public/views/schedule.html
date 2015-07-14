@@ -1,0 +1,33 @@
+<h3 class="panel-header">Stationboard</h3>
+<table class="table" style="background:#333;text-transform:uppercase;">
+	<thead style="color:#fff">
+		<tr>
+			<th>Departure</th>
+			<th>Destination</th>
+			<th>From</th>
+			<th>Platform</th>
+			<th>Category</th>
+			<!--<th>Category name</th> -->
+			<th>Operator</th>
+			<th>Details</th>
+		</tr>
+	</thead>
+	<tbody style="color:#f9dc00">
+		<tr ng-repeat="item in stationboard">
+			<td>
+				{{item.stop.departure | date : 'shortTime'}}
+				<span style="color:red" ng-show="item.stop.delay">+{{item.stop.delay}} min</span>
+			</td>
+			<td>{{item.to}}</td>
+			<td>{{item.stop.location.name}}</td>
+			<td>{{item.stop.platform}}</td>
+			<td>{{item.category}}</td>
+			<!-- <td>{{item.name}}</td> -->
+			<td>{{item.operator}}</td>
+			<td>
+				<button class="btn-primary" ng-click="showDetails(item)">details</button>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<h4 class="text-center" ng-hide="stationboard.length">Loading data....</h4>

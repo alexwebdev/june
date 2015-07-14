@@ -1,4 +1,16 @@
-angular.module('juneApp', ['ngResource'])
+angular.module('juneApp', ['ngResource', 'ngRoute'])
+.config(function($routeProvider) {
+	$routeProvider.when('/schedule', {
+		templateUrl: '/views/schedule.html',
+		controller: 'scheduleCtrl'
+	});
+
+	$routeProvider.when('/map', {
+		templateUrl: '/views/map.html',
+		controller: 'mapCtrl'
+	});
+})
+
 .constant('baseUrl', 'http://transport.opendata.ch/v1/')
 .constant('openDevKey', 'wX9NwuHnZU2ToO7GmGR9uw')
 .controller('mainCtrl', function($scope, $http, baseUrl) {
@@ -6,20 +18,11 @@ angular.module('juneApp', ['ngResource'])
 
 
 })
-.controller('mbtaCtrl', function($scope, $http, baseUrl, apiSrv) {
+.controller('mbtaCtrl', function($scope, mapDataSrv) {
+
 
 	$scope.selectedCategory = 'S';
 
-
-	// stationboard
-	$http.get(baseUrl + 'stationboard', {params: {station: 'Zürich', 'transportations[]': ['ice_tgv_rj', 'ec_ic']}})
-		.success(function(data) {
-			console.log('stationboard', data);
-			$scope.stationboard = data.stationboard;
-
-			$scope.categories = _.uniq(_.pluck($scope.stationboard, 'category'));
-			console.log('types', $scope.categories);
-		});
 
 
 
@@ -30,6 +33,14 @@ angular.module('juneApp', ['ngResource'])
 
 	$scope.showDetails = function(item) {
 		$scope.passList = item.passList;
+
+		$scope.checkpoints = [];
+		angular.forEach(item.passList, function(checkpoint, key) {
+			$scope.checkpoints.push(checkpoint.location.coordinate);
+		});
+		mapDataSrv.setCoords($scope.checkpoints);
+
+		// console.log('checkpoints ready', $scope.checkpoints);
 	};
 
 

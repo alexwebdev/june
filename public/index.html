@@ -4,12 +4,17 @@
 	<title>Cool App</title>
 	<script src="bower_components/angular/angular.js"></script>
 	<script src="bower_components/angular-resource/angular-resource.js"></script>
+	<script src="bower_components/angular-route/angular-route.js"></script>
 	<script src="bower_components/underscore/underscore.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js"></script>
 	<link rel="stylesheet" href="bower_components/bootstrap-css/css/bootstrap.css" />
 	<link rel="stylesheet" href="bower_components/bootstrap-css/css/bootstrap-theme.css" />
 	<script src="js/module.js"></script>
 	<script src="js/apiSrv.js"></script>
 	<script src="js/filters.js"></script>
+	<script src="js/scheduleCtrl.js"></script>
+	<script src="js/mapCtrl.js"></script>
+	<script src="js/mapDataSrv.js"></script>
 	<style>
 		table tr {
 			border-top: 3px solid #000;
@@ -20,7 +25,9 @@
 	<div class="container" ng-controller="mbtaCtrl">
 		<div class="panel">
 
-			<button ng-click="getModes()">kliknij</button>
+			<a href="/" class="btn btn-primary">Home</a>
+			<a href="#/schedule" class="btn btn-primary">Schedule</a>
+			<a href="#/map" class="btn btn-primary">Map</a>
 			<div class="row">
 				<div class="col-xs-3 panel">
 					<h3 class="panel-header">Select category</h3>
@@ -39,48 +46,10 @@
 					</div>
 				</div>
 				<div class="col-xs-9 panel">
-					<h3 class="panel-header">Stationboard</h3>
-					<table class="table" style="background:#333;text-transform:uppercase;">
-						<thead style="color:#fff">
-							<tr>
-								<th>Departure</th>
-								<th>Destination</th>
-								<th>From</th>
-								<th>Platform</th>
-								<th>Category</th>
-								<!--<th>Category name</th> -->
-								<th>Operator</th>
-								<th>Details</th>
-							</tr>
-						</thead>
-						<tbody style="color:#f9dc00">
-							<tr ng-repeat="item in stationboard">
-								<td>
-									{{item.stop.departure | date : 'shortTime'}}
-									<span style="color:red" ng-show="item.stop.delay">+{{item.stop.delay}} min</span>
-								</td>
-								<td>{{item.to}}</td>
-								<td>{{item.stop.location.name}}</td>
-								<td>{{item.stop.platform}}</td>
-								<td>{{item.category}}</td>
-								<!-- <td>{{item.name}}</td> -->
-								<td>{{item.operator}}</td>
-								<td>
-									<button class="btn-primary" ng-click="showDetails(item)">details</button>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<div class="col-xs-5 panel">
-					<h3 class="panel-header">Stops</h3>
-					<table class="table table-striped table-hover">
-						<tbody>
-							<tr ng-repeat="stop in stops">
-								<td>{{stop.stop_name}}</td>
-							</tr>
-						</tbody>
-					</table>
+
+					<ng-view></ng-view>
+
+					
 				</div>
 			</div>
 		</div>
