@@ -8,13 +8,12 @@ angular.module('juneApp')
 
 	return {
 
-		getSchedule: function() {
+		getSchedule: function(params) {
 			var promise = $http.get(baseUrl + 'stationboard', {
-				params: {
-					station: 'Zürich',
+				params: angular.extend({
 					'transportations[]': ['ice_tgv_rj', 'ec_ic'],
 					limit: 20
-				}
+				}, params)
 			})
 			.success(function(data) {
 				return data;
@@ -37,6 +36,18 @@ angular.module('juneApp')
 		getStopsByRoute: function(routeId) {
 			var promise = $http.get(baseUrl + 'stopsbyroute', {
 				params: angular.extend({route: routeId}, params)
+			}).success(function(data) {
+				return data;
+			});
+
+			return promise;
+		},
+
+		getLocations: function(query) {
+			var promise = $http.get(baseUrl + 'locations', {
+				params: {
+					query: query
+				}
 			}).success(function(data) {
 				return data;
 			});

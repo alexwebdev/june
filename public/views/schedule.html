@@ -1,5 +1,8 @@
 <h3 class="panel-header">Stationboard</h3>
-<table class="table" style="background:#333;text-transform:uppercase;">
+<autocomplete ng-model="locationQuery" data="locations" on-type="updateLocations" on-select="onLocationSelect"></autocomplete>
+
+
+<table class="table" style="background:#333;text-transform:uppercase;" ng-hide="connectionMapShown">
 	<thead style="color:#fff">
 		<tr>
 			<th>Departure</th>
@@ -31,3 +34,8 @@
 	</tbody>
 </table>
 <h4 class="text-center" ng-hide="stationboard.length">Loading data....</h4>
+
+<div ng-controller="mapCtrl" >
+	<div id="map-canvas" style="height:400px"></div>
+	<a href="" ng-click="hideConnectionMap()">back to stationboard</a>
+</div>

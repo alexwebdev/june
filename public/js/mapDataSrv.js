@@ -4,6 +4,7 @@ angular.module('juneApp')
 
 		return {
 			setCoords: function(coords) {
+				console.log('setting coords', coords);
 				this.coords = coords;
 			},
 

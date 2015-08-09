@@ -6,13 +6,15 @@
 	<script src="bower_components/angular-resource/angular-resource.js"></script>
 	<script src="bower_components/angular-route/angular-route.js"></script>
 	<script src="bower_components/underscore/underscore.js"></script>
+	<script src="bower_components/allmighty-autocomplete/script/autocomplete.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js"></script>
 	<link rel="stylesheet" href="bower_components/bootstrap-css/css/bootstrap.css" />
 	<link rel="stylesheet" href="bower_components/bootstrap-css/css/bootstrap-theme.css" />
+	<link rel="stylesheet" href="bower_components/allmighty-autocomplete/style/autocomplete.css" />
 	<script src="js/module.js"></script>
 	<script src="js/apiSrv.js"></script>
 	<script src="js/filters.js"></script>
-	<script src="js/scheduleCtrl.js"></script>
+	<script src="js/stationBoardCtrl.js"></script>
 	<script src="js/mapCtrl.js"></script>
 	<script src="js/mapDataSrv.js"></script>
 	<style>
@@ -26,7 +28,7 @@
 		<div class="panel">
 
 			<a href="/" class="btn btn-primary">Home</a>
-			<a href="#/schedule" class="btn btn-primary">Schedule</a>
+			<a href="#/schedule" class="btn btn-primary">Stationboard</a>
 			<a href="#/map" class="btn btn-primary">Map</a>
 			<div class="row">
 				<div class="col-xs-3 panel">
@@ -36,13 +38,15 @@
 						<input type="radio" ng-model="selectedCategory" value="{{category}}">{{category}}
 					</label>
 
-					<div class="panel">
+					<div class="panel" ng-show="passList.length">
 						<h3 class="panel-header">PassList</h3>
 						<ul>
 							<li ng-repeat="passItem in passList">
 								{{passItem.location.name}} - {{passItem.arrival | date : 'shortTime'}}
 							</li>
 						</ul>
+						<a href="" class="btn btn-primary" ng-click="showConnectionMap()" ng-hide="connectionMapShown">show on map</a>
+						<a href="" class="btn btn-primary" ng-click="hideConnectionMap()" ng-show="connectionMapShown">hide map</a>
 					</div>
 				</div>
 				<div class="col-xs-9 panel">

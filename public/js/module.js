@@ -1,4 +1,4 @@
-angular.module('juneApp', ['ngResource', 'ngRoute'])
+angular.module('juneApp', ['ngResource', 'ngRoute', 'autocomplete'])
 .config(function($routeProvider) {
 	$routeProvider.when('/schedule', {
 		templateUrl: '/views/schedule.html',
@@ -9,6 +9,10 @@ angular.module('juneApp', ['ngResource', 'ngRoute'])
 		templateUrl: '/views/map.html',
 		controller: 'mapCtrl'
 	});
+
+	$routeProvider.otherwise({
+		templateUrl: '/views/home.html'
+	});
 })
 
 .constant('baseUrl', 'http://transport.opendata.ch/v1/')
@@ -18,10 +22,20 @@ angular.module('juneApp', ['ngResource', 'ngRoute'])
 
 
 })
-.controller('mbtaCtrl', function($scope, mapDataSrv) {
+.controller('mbtaCtrl', function($scope, mapDataSrv, apiSrv) {
 
 
 	$scope.selectedCategory = 'S';
+
+	$scope.showConnectionMap = function() {
+		$scope.connectionMapShown = true;
+	};
+
+	$scope.hideConnectionMap = function() {
+		$scope.connectionMapShown = false;
+	};
+
+
 
 
 
