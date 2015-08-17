@@ -2,7 +2,7 @@
 <autocomplete ng-model="locationQuery" data="locations" on-type="updateLocations" on-select="onLocationSelect"></autocomplete>
 
 
-<table class="table" style="background:#333;text-transform:uppercase;" ng-hide="connectionMapShown">
+<table class="table" style="background:#333;text-transform:uppercase;" ng-hide="connectionMapShown || !stationboard.length">
 	<thead style="color:#fff">
 		<tr>
 			<th>Departure</th>
@@ -33,7 +33,7 @@
 		</tr>
 	</tbody>
 </table>
-<h4 class="text-center" ng-hide="stationboard.length">Loading data....</h4>
+<h4 class="text-center" ng-show="stationboardLoading">Loading data....</h4>
 
 <div ng-controller="mapCtrl" >
 	<div id="map-canvas" style="height:400px"></div>

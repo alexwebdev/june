@@ -42,7 +42,8 @@
 						<h3 class="panel-header">PassList</h3>
 						<ul>
 							<li ng-repeat="passItem in passList">
-								{{passItem.location.name}} - {{passItem.arrival | date : 'shortTime'}}
+								<p ng-show="passItem.departure">{{passItem.location.name}} - <span style="color:red">{{passItem.departure | date : 'shortTime'}}</span></p>
+								<p ng-show="passItem.arrival"><a href="" ng-click="onPassLocationSelect(passItem.location.name)">{{passItem.location.name}}</a> - {{passItem.arrival | date : 'shortTime'}}</p>
 							</li>
 						</ul>
 						<a href="" class="btn btn-primary" ng-click="showConnectionMap()" ng-hide="connectionMapShown">show on map</a>

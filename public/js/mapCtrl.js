@@ -13,8 +13,6 @@ angular.module('juneApp')
 					bounds.extend(new google.maps.LatLng(coords.x, coords.y));
 				});
 
-				console.log('bounds', bounds);
-
 
 				var journeyPath = new google.maps.Polyline({
 				    path: journeyCoords,

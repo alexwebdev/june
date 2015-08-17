@@ -46,6 +46,8 @@ angular.module('juneApp', ['ngResource', 'ngRoute', 'autocomplete'])
 
 
 	$scope.showDetails = function(item) {
+		console.log('showing details', item);
+		item.passList.unshift(item.stop);
 		$scope.passList = item.passList;
 
 		$scope.checkpoints = [];
@@ -57,5 +59,9 @@ angular.module('juneApp', ['ngResource', 'ngRoute', 'autocomplete'])
 		// console.log('checkpoints ready', $scope.checkpoints);
 	};
 
+	$scope.onPassLocationSelect = function(stationName) {
+		console.log('location', stationName);
+		$scope.$broadcast('locationSelected', {location: stationName});
+	};
 
 });
