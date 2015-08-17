@@ -11,15 +11,12 @@ angular.module('juneApp')
 
 		$scope.onLocationSelect = function(location) {
 
-			console.log('location select', location);
-
 			$scope.stationboard = [];
 			$scope.stationboardLoading = true;
 
 			apiSrv.getSchedule({station: location})
 				.then(function(result) {
 					$scope.stationboard = result.data.stationboard;
-					console.log('stationboard', result.data.stationboard);
 					$scope.categories = _.uniq(_.pluck($scope.stationboard, 'category'));
 					// delay = $timeout(getSchedule, 1000*60);
 					$scope.stationboardLoading = false;
@@ -31,7 +28,6 @@ angular.module('juneApp')
 
 
 		$scope.$on('locationSelected', function(event, args) {
-			console.log('event', arguments);
 			$scope.onLocationSelect(args.location);
 		});
 

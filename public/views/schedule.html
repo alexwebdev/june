@@ -2,6 +2,8 @@
 <autocomplete ng-model="locationQuery" data="locations" on-type="updateLocations" on-select="onLocationSelect"></autocomplete>
 
 
+<h3 ng-repeat="category in categories">{{category|json}}</h3>
+
 <table class="table" style="background:#333;text-transform:uppercase;" ng-hide="connectionMapShown || !stationboard.length">
 	<thead style="color:#fff">
 		<tr>
