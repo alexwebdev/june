@@ -2,8 +2,6 @@
 <autocomplete ng-model="locationQuery" data="locations" on-type="updateLocations" on-select="onLocationSelect"></autocomplete>
 
 
-<h3 ng-repeat="category in categories">{{category|json}}</h3>
-
 <table class="table" style="background:#333;text-transform:uppercase;" ng-hide="connectionMapShown || !stationboard.length">
 	<thead style="color:#fff">
 		<tr>
@@ -18,7 +16,7 @@
 		</tr>
 	</thead>
 	<tbody style="color:#f9dc00">
-		<tr ng-repeat="item in stationboard">
+		<tr ng-repeat="item in stationboard | filter:categoryFilterFn">
 			<td>
 				{{item.stop.departure | date : 'shortTime'}}
 				<span style="color:red" ng-show="item.stop.delay">+{{item.stop.delay}} min</span>

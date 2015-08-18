@@ -22,10 +22,10 @@ angular.module('juneApp', ['ngResource', 'ngRoute', 'autocomplete'])
 
 
 })
-.controller('mbtaCtrl', function($scope, mapDataSrv, apiSrv) {
+.controller('mbtaCtrl', function($scope, categorySrv, mapDataSrv, apiSrv) {
 
 
-	$scope.selectedCategory = 'S';
+	$scope.selectedCategory = '';
 
 	$scope.showConnectionMap = function() {
 		$scope.connectionMapShown = true;
@@ -63,5 +63,25 @@ angular.module('juneApp', ['ngResource', 'ngRoute', 'autocomplete'])
 		console.log('location', stationName);
 		$scope.$broadcast('locationSelected', {location: stationName});
 	};
+
+	$scope.onCategoryChange = function() {
+		var selectedCategories = _.pluck(_.where($scope.categoryFilters, {checked: true}), 'name');
+
+		$scope.$broadcast('categoriesChange', selectedCategories);
+	};
+
+
+	$scope.$on('categoriesUpdate', function(e, data) {
+
+		$scope.categoryFilters = [];
+
+		angular.forEach(data, function(element, index) {
+			$scope.categoryFilters.push({
+				id: index,
+				name: element,
+				checked: false
+			});
+		});
+	});
 
 });

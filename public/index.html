@@ -17,6 +17,7 @@
 	<script src="js/stationBoardCtrl.js"></script>
 	<script src="js/mapCtrl.js"></script>
 	<script src="js/mapDataSrv.js"></script>
+	<script src="js/categorySrv.js"></script>
 	<style>
 		table tr {
 			border-top: 3px solid #000;
@@ -33,10 +34,14 @@
 			<div class="row">
 				<div class="col-xs-3 panel">
 					<h3 class="panel-header">Select category</h3>
-					<pre>{{selectedCategory}}</pre>
-					<label ng-repeat="category in categories" style="width:100%">
-						<input type="radio" ng-model="selectedCategory" value="{{category}}">{{category}}
-					</label>
+					<pre>{{categoryFilters}}</pre>
+
+
+					<div class="checkbox" ng-repeat="category in categoryFilters">
+						<label>
+							<input name="selectedCategory" type="checkbox" ng-model="category.checked" ng-change="onCategoryChange()">{{category.name}}
+						</label>
+					</div>
 
 					<div class="panel" ng-show="passList.length">
 						<h3 class="panel-header">PassList</h3>

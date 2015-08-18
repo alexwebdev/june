@@ -1,6 +1,10 @@
 angular.module('juneApp')
 	.controller('scheduleCtrl', function($scope, $timeout, apiSrv) {
 
+		$scope.filters = {
+			category: []
+		};
+
 		$scope.updateLocations = function(query) {
 
 			apiSrv.getLocations(query)
@@ -27,8 +31,24 @@ angular.module('juneApp')
 		};
 
 
-		$scope.$on('locationSelected', function(event, args) {
-			$scope.onLocationSelect(args.location);
+		$scope.categoryFilterFn = function(departure) {
+			return $scope.filters.category.length === 0 ||
+				_.indexOf($scope.filters.category, departure.category) !== -1;
+		};
+
+
+		$scope.$on('locationSelected', function(event, data) {
+			$scope.onLocationSelect(data.location);
+		});
+
+		$scope.$on('categoriesChange', function(event, data) {
+			console.log('endo', data);
+			$scope.filters.category = data;
+		});
+
+
+		$scope.$watch('categories', function(newVal) {
+			$scope.$emit('categoriesUpdate', newVal);
 		});
 
 
@@ -39,6 +59,8 @@ angular.module('juneApp')
 			// get schedule
 
 		})();
+
+		$scope.onLocationSelect('Zurich');
 
 
 
