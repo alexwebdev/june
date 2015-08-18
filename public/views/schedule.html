@@ -1,6 +1,7 @@
 <h3 class="panel-header">Stationboard</h3>
 <autocomplete ng-model="locationQuery" data="locations" on-type="updateLocations" on-select="onLocationSelect"></autocomplete>
 
+<pre>{{filters.category | json}}</pre>
 
 <table class="table" style="background:#333;text-transform:uppercase;" ng-hide="connectionMapShown || !stationboard.length">
 	<thead style="color:#fff">

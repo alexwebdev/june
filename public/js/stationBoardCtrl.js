@@ -48,6 +48,8 @@ angular.module('juneApp')
 
 
 		$scope.$watch('categories', function(newVal) {
+			// clean filters
+			$scope.filters.category = [];
 			$scope.$emit('categoriesUpdate', newVal);
 		});
 
