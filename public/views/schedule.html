@@ -1,42 +1,76 @@
-<h3 class="panel-header">Stationboard</h3>
-<autocomplete ng-model="locationQuery" data="locations" on-type="updateLocations" on-select="onLocationSelect"></autocomplete>
+<div class="row">
+	<div class="col-xs-3">
 
-<pre>{{filters.category | json}}</pre>
+		<div class="panel" ng-controller="categoryCtrl">
+			<h3 class="panel-header">Select category</h3>
+			<pre>{{categoryFilters}}</pre>
+			<div class="checkbox" ng-repeat="category in categoryFilters">
+				<label>
+					<input name="selectedCategory" type="checkbox" ng-model="category.checked" ng-change="onCategoryChange()">{{category.name}}
+				</label>
+			</div>
+		</div>
 
-<table class="table" style="background:#333;text-transform:uppercase;" ng-hide="connectionMapShown || !stationboard.length">
-	<thead style="color:#fff">
-		<tr>
-			<th>Departure</th>
-			<th>Destination</th>
-			<th>From</th>
-			<th>Platform</th>
-			<th>Category</th>
-			<!--<th>Category name</th> -->
-			<th>Operator</th>
-			<th>Details</th>
-		</tr>
-	</thead>
-	<tbody style="color:#f9dc00">
-		<tr ng-repeat="item in stationboard | filter:categoryFilterFn">
-			<td>
-				{{item.stop.departure | date : 'shortTime'}}
-				<span style="color:red" ng-show="item.stop.delay">+{{item.stop.delay}} min</span>
-			</td>
-			<td>{{item.to}}</td>
-			<td>{{item.stop.location.name}}</td>
-			<td>{{item.stop.platform}}</td>
-			<td>{{item.category}}</td>
-			<!-- <td>{{item.name}}</td> -->
-			<td>{{item.operator}}</td>
-			<td>
-				<button class="btn-primary" ng-click="showDetails(item)">details</button>
-			</td>
-		</tr>
-	</tbody>
-</table>
-<h4 class="text-center" ng-show="stationboardLoading">Loading data....</h4>
 
-<div ng-controller="mapCtrl" >
-	<div id="map-canvas" style="height:400px"></div>
-	<a href="" ng-click="hideConnectionMap()">back to stationboard</a>
+
+		<div class="panel" ng-show="passList.length">
+			<h3 class="panel-header">PassList</h3>
+			<ul>
+				<li ng-repeat="passItem in passList">
+					<p ng-show="passItem.departure">{{passItem.location.name}} - <span style="color:red">{{passItem.departure | date : 'shortTime'}}</span></p>
+					<p ng-show="passItem.arrival"><a href="" ng-click="onLocationSelect(passItem.location.name)">{{passItem.location.name}}</a> - {{passItem.arrival | date : 'shortTime'}}</p>
+				</li>
+			</ul>
+			<a href="" class="btn btn-primary" ng-click="showConnectionMap()" ng-hide="connectionMapShown">show on map</a>
+			<a href="" class="btn btn-primary" ng-click="hideConnectionMap()" ng-show="connectionMapShown">hide map</a>
+		</div>
+	</div>
+
+
+	<div class="col-xs-9 panel">
+		<h3 class="panel-header">Stationboard</h3>
+		<autocomplete ng-model="locationQuery" data="locations" on-type="updateLocations" on-select="onLocationSelect"></autocomplete>
+
+		<pre>{{filters.category | json}}</pre>
+
+		<table class="table" style="background:#333;text-transform:uppercase;" ng-hide="connectionMapShown || !stationboard.length">
+			<thead style="color:#fff">
+				<tr>
+					<th>Departure</th>
+					<th>Destination</th>
+					<th>From</th>
+					<th>Platform</th>
+					<th>Category</th>
+					<!--<th>Category name</th> -->
+					<th>Operator</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody style="color:#f9dc00">
+				<tr ng-repeat="item in stationboard | filter:categoryFilterFn">
+					<td>
+						{{item.stop.departure | date : 'shortTime'}}
+						<span style="color:red" ng-show="item.stop.delay">+{{item.stop.delay}} min</span>
+					</td>
+					<td>{{item.to}}</td>
+					<td>{{item.stop.location.name}}</td>
+					<td>{{item.stop.platform}}</td>
+					<td>{{item.category}}</td>
+					<!-- <td>{{item.name}}</td> -->
+					<td>{{item.operator}}</td>
+					<td>
+						<button class="btn-primary" ng-click="showDetails(item)">details</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<h4 class="text-center" ng-show="stationboardLoading">Loading data....</h4>
+
+		<div ng-controller="mapCtrl" ng-show="connectionMapShown">
+			<div id="map-canvas" style="height:400px"></div>
+			<a href="" ng-click="hideConnectionMap()">back to stationboard</a>
+		</div>
+	</div>
 </div>
+
+

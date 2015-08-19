@@ -2,6 +2,7 @@ angular.module('juneApp')
 	.controller('mapCtrl', function($scope, mapDataSrv) {
 
 		$scope.$watch('connectionMapShown', function(toggle) {
+			console.log('map toggle', document.getElementById('map-canvas'));
 			if (toggle) {
 		        var map = new google.maps.Map(document.getElementById('map-canvas'));
 

@@ -14,7 +14,9 @@
 	<script src="js/module.js"></script>
 	<script src="js/apiSrv.js"></script>
 	<script src="js/filters.js"></script>
+	<script src="js/mainCtrl.js"></script>
 	<script src="js/stationBoardCtrl.js"></script>
+	<script src="js/categoryCtrl.js"></script>
 	<script src="js/mapCtrl.js"></script>
 	<script src="js/mapDataSrv.js"></script>
 	<script src="js/categorySrv.js"></script>
@@ -25,44 +27,16 @@
 	</style>
 </head>
 <body>
-	<div class="container" ng-controller="mbtaCtrl">
+	<div class="container" ng-controller="mainCtrl">
 		<div class="panel">
 
 			<a href="/" class="btn btn-primary">Home</a>
 			<a href="#/schedule" class="btn btn-primary">Stationboard</a>
 			<a href="#/map" class="btn btn-primary">Map</a>
-			<div class="row">
-				<div class="col-xs-3 panel">
-					<h3 class="panel-header">Select category</h3>
-					<pre>{{categoryFilters}}</pre>
-
-
-					<div class="checkbox" ng-repeat="category in categoryFilters">
-						<label>
-							<input name="selectedCategory" type="checkbox" ng-model="category.checked" ng-change="onCategoryChange()">{{category.name}}
-						</label>
-					</div>
-
-					<div class="panel" ng-show="passList.length">
-						<h3 class="panel-header">PassList</h3>
-						<ul>
-							<li ng-repeat="passItem in passList">
-								<p ng-show="passItem.departure">{{passItem.location.name}} - <span style="color:red">{{passItem.departure | date : 'shortTime'}}</span></p>
-								<p ng-show="passItem.arrival"><a href="" ng-click="onPassLocationSelect(passItem.location.name)">{{passItem.location.name}}</a> - {{passItem.arrival | date : 'shortTime'}}</p>
-							</li>
-						</ul>
-						<a href="" class="btn btn-primary" ng-click="showConnectionMap()" ng-hide="connectionMapShown">show on map</a>
-						<a href="" class="btn btn-primary" ng-click="hideConnectionMap()" ng-show="connectionMapShown">hide map</a>
-					</div>
-				</div>
-				<div class="col-xs-9 panel">
-
-					<ng-view></ng-view>
-
-					
-				</div>
-			</div>
 		</div>
+
+		<ng-view></ng-view>
+			
 	</div>
 </body>
 </html>

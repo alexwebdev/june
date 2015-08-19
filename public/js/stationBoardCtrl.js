@@ -37,12 +37,7 @@ angular.module('juneApp')
 		};
 
 
-		$scope.$on('locationSelected', function(event, data) {
-			$scope.onLocationSelect(data.location);
-		});
-
 		$scope.$on('categoriesChange', function(event, data) {
-			console.log('endo', data);
 			$scope.filters.category = data;
 		});
 
@@ -50,7 +45,7 @@ angular.module('juneApp')
 		$scope.$watch('categories', function(newVal) {
 			// clean filters
 			$scope.filters.category = [];
-			$scope.$emit('categoriesUpdate', newVal);
+			$scope.$broadcast('categoriesUpdate', newVal);
 		});
 
 
