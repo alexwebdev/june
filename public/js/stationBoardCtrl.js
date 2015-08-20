@@ -5,14 +5,26 @@ angular.module('juneApp')
 			category: []
 		};
 
-		$scope.updateLocations = function(query) {
 
+		/**
+		 * fetch locations (autocomplete)
+		 * @param  {[type]}
+		 * @return {[type]}
+		 */
+		$scope.updateLocations = function(query) {
 			apiSrv.getLocations(query)
 				.then(function(result) {
 					$scope.locations = _.pluck(result.data.stations, 'name');
 				});
 		};
 
+
+		/**
+		 * location select event handler
+		 * fetch stationboard data from server
+		 * @param  {[type]}
+		 * @return {[type]}
+		 */
 		$scope.onLocationSelect = function(location) {
 
 			$scope.stationboard = [];
@@ -31,17 +43,33 @@ angular.module('juneApp')
 		};
 
 
+		/**
+		 * custom category filter function
+		 * @param  {[type]}
+		 * @return {[type]}
+		 */
 		$scope.categoryFilterFn = function(departure) {
 			return $scope.filters.category.length === 0 ||
 				_.indexOf($scope.filters.category, departure.category) !== -1;
 		};
 
 
+		/**
+		 * categoriesChange event is triggered when user has selected any filter
+		 * @param  {[type]}
+		 * @param  {[type]}
+		 * @return {[type]}
+		 */
 		$scope.$on('categoriesChange', function(event, data) {
 			$scope.filters.category = data;
 		});
 
 
+		/**
+		 * broadcast categoriesUpdate event on data load
+		 * @param  {Array}
+		 * @return {[type]}
+		 */
 		$scope.$watch('categories', function(newVal) {
 			// clean filters
 			$scope.filters.category = [];

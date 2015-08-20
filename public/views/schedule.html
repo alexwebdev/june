@@ -11,8 +11,6 @@
 			</div>
 		</div>
 
-
-
 		<div class="panel" ng-show="passList.length">
 			<h3 class="panel-header">PassList</h3>
 			<ul>
@@ -26,12 +24,9 @@
 		</div>
 	</div>
 
-
 	<div class="col-xs-9 panel">
 		<h3 class="panel-header">Stationboard</h3>
 		<autocomplete ng-model="locationQuery" data="locations" on-type="updateLocations" on-select="onLocationSelect"></autocomplete>
-
-		<pre>{{filters.category | json}}</pre>
 
 		<table class="table" style="background:#333;text-transform:uppercase;" ng-hide="connectionMapShown || !stationboard.length">
 			<thead style="color:#fff">

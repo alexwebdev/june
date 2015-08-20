@@ -5,6 +5,10 @@ angular.module('juneApp', ['ngResource', 'ngRoute', 'autocomplete'])
 			controller: 'scheduleCtrl'
 		});
 
+		$routeProvider.when('/connections', {
+			templateUrl: '/views/connections.html'
+		});
+
 		$routeProvider.when('/map', {
 			templateUrl: '/views/map.html',
 			controller: 'mapCtrl'

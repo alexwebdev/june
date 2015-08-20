@@ -11,7 +11,7 @@ angular.module('juneApp')
 		getSchedule: function(params) {
 			var promise = $http.get(baseUrl + 'stationboard', {
 				params: angular.extend({
-					'transportations[]': ['ice_tgv_rj', 'ec_ic'],
+					'transportations[]': ['ice_tgv_rj', 'ec_ic', 'ir'],
 					limit: 20
 				}, params)
 			})

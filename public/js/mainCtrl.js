@@ -16,12 +16,12 @@ angular.module('juneApp')
 
 
 		/**
+		 * get pass list 
 		 * prepare checkpoints data for the map
 		 * @param  {[type]}
 		 * @return {[type]}
 		 */
 		$scope.showDetails = function(item) {
-			console.log('showing details', item);
 			item.passList.unshift(item.stop);
 			$scope.passList = item.passList;
 
@@ -30,13 +30,5 @@ angular.module('juneApp')
 				$scope.checkpoints.push(checkpoint.location.coordinate);
 			});
 			mapDataSrv.setCoords($scope.checkpoints);
-
-			// console.log('checkpoints ready', $scope.checkpoints);
 		};
-
-		
-
-		
-
-		
 	});
