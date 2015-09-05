@@ -3,7 +3,7 @@ angular.module('juneApp')
 
 		$scope.searchParams = {
 			from: 'Warsaw',
-			to: 'Wroclaw'
+			to: 'Glogow'
 		};
 		$scope.connections = [];
 

@@ -7,38 +7,89 @@
 		<button type="submit" class="btn btn-primary">Search</button>
 	</form>
 
-	<table>
+	<table class="table table-striped">
 		<thead>
 			<tr>
 				<th>Station</th>
 				<th>Date</th>
 				<th>Time</th>
 				<th>Duration</th>
+				<th>Changes</th>
 				<th>Products</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="connection in connections">
+			<tr ng-repeat-start="connection in connections">
 				<td>
 					{{connection.from.station.name}}
 					<br>
 					{{connection.to.station.name}}
 				</td>
 				<td>
-					{{connection.from.departure | date: 'shortDate'}}
+					{{connection.from.departure | connectionDate}}
 					<br>
-					{{connection.to.arrival | date: 'shortDate'}}
+					{{connection.to.arrival | connectionDate}}
 				</td>
 				<td>
-					{{connection.from.departure | date: 'shortTime'}}
+					{{connection.from.departure | connectionTime}}
 					<br>
-					{{connection.to.arrival | date: 'shortTime'}}
+					{{connection.to.arrival | connectionTime}}
 				</td>
 				<td>
 					{{connection.duration | journeyDuration}}
 				</td>
 				<td>
+					{{connection.transfers}}
+				</td>
+				<td>
 					{{connection.products.join()}}
+				</td>
+			</tr>
+			<tr ng-repeat-end>
+				<td colspan="6">
+
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Station</th>
+								<th>Date</th>
+								<th>Time</th>
+								<th>Products</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="section in connection.sections">
+								<td>
+									{{section.departure.location.name}}<br>
+									{{section.arrival.location.name}}
+								</td>
+								<td>
+									{{section.departure.departure | connectionDate}}<br>
+									{{section.arrival.arrival | connectionDate}}
+								</td>
+								<td>
+									{{section.departure.departure | connectionTime}}<br>
+									{{section.arrival.arrival | connectionTime}}
+								</td>
+								<td>
+									{{section.journey.name}}
+								</td>
+							</tr>
+
+							</tr>
+							<tr>
+								<td colspan="4">
+									<a href="">show intermediate stops</a>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="4">
+									runs: {{connection.service.regular}}
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
 				</td>
 			</tr>
 		</tbody>
