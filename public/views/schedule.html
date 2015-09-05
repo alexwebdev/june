@@ -3,7 +3,6 @@
 
 		<div class="panel" ng-controller="categoryCtrl">
 			<h3 class="panel-header">Select category</h3>
-			<pre>{{categoryFilters}}</pre>
 			<div class="checkbox" ng-repeat="category in categoryFilters">
 				<label>
 					<input name="selectedCategory" type="checkbox" ng-model="category.checked" ng-change="onCategoryChange()">{{category.name}}

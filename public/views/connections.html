@@ -1,1 +1,47 @@
-page under construction
+<div class="container">
+
+	<pre>{{searchParams | json}}</pre>
+	<form class="form-inline" ng-submit="search()">
+		<input type="text" name="from" class="form-control" placeholder="from" ng-model="searchParams.from">
+		<input type="text" name="to" class="form-control" placeholder="to" ng-model="searchParams.to">
+		<button type="submit" class="btn btn-primary">Search</button>
+	</form>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Station</th>
+				<th>Date</th>
+				<th>Time</th>
+				<th>Duration</th>
+				<th>Products</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="connection in connections">
+				<td>
+					{{connection.from.station.name}}
+					<br>
+					{{connection.to.station.name}}
+				</td>
+				<td>
+					{{connection.from.departure | date: 'shortDate'}}
+					<br>
+					{{connection.to.arrival | date: 'shortDate'}}
+				</td>
+				<td>
+					{{connection.from.departure | date: 'shortTime'}}
+					<br>
+					{{connection.to.arrival | date: 'shortTime'}}
+				</td>
+				<td>
+					{{connection.duration | journeyDuration}}
+				</td>
+				<td>
+					{{connection.products.join()}}
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>

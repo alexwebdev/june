@@ -6,7 +6,8 @@ angular.module('juneApp', ['ngResource', 'ngRoute', 'autocomplete'])
 		});
 
 		$routeProvider.when('/connections', {
-			templateUrl: '/views/connections.html'
+			templateUrl: '/views/connections.html',
+			controller: "connectionsCtrl"
 		});
 
 		$routeProvider.when('/map', {

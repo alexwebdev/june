@@ -1,10 +1,10 @@
 angular.module('juneApp')
 .factory('apiSrv', function($http, $q, baseUrl, openDevKey) {
 
-	var params = {
-		api_key: openDevKey,
-		format: 'json'
-	};
+	// var params = {
+	// 	api_key: openDevKey,
+	// 	format: 'json'
+	// };
 
 	return {
 
@@ -36,6 +36,17 @@ angular.module('juneApp')
 		getStopsByRoute: function(routeId) {
 			var promise = $http.get(baseUrl + 'stopsbyroute', {
 				params: angular.extend({route: routeId}, params)
+			}).success(function(data) {
+				return data;
+			});
+
+			return promise;
+		},
+
+		getConnections: function(params) {
+			console.log('apiSrv get conn', params);
+			var promise = $http.get(baseUrl + 'connections', {
+				params: params
 			}).success(function(data) {
 				return data;
 			});
