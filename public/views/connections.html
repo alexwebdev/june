@@ -7,7 +7,7 @@
 		<button type="submit" class="btn btn-primary">Search</button>
 	</form>
 
-	<table class="table table-striped">
+	<table class="table conn-table">
 		<thead>
 			<tr>
 				<th>Station</th>
@@ -19,11 +19,16 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat-start="connection in connections">
+			<tr ng-repeat-start="connection in connections" class="conn-row">
 				<td>
-					{{connection.from.station.name}}
-					<br>
-					{{connection.to.station.name}}
+					<a href="" class="details-btn pull-left">
+						<em class="st-icon st-icon-arrow-right"></em>
+					</a>
+					<div class="station-name-wrap pull-left">
+						{{connection.from.station.name}}
+						<br>
+						{{connection.to.station.name}}
+					</div>
 				</td>
 				<td>
 					{{connection.from.departure | connectionDate}}
@@ -47,8 +52,7 @@
 			</tr>
 			<tr ng-repeat-end>
 				<td colspan="6">
-
-					<table class="table">
+					<table class="table table-condensed subconn-table">
 						<thead>
 							<tr>
 								<th>Station</th>
@@ -57,29 +61,57 @@
 								<th>Products</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr ng-repeat="section in connection.sections">
+						<tbody ng-repeat="section in connection.sections">
+							<!-- empty row for padding -->
+							<tr class="empty-row">
+								<td colspan="4"><p class="transfer-time">transfer</p></td>
+							</tr>
+							<!-- departure station -->
+							<tr style="color:green">
 								<td>
-									{{section.departure.location.name}}<br>
+									{{section.departure.location.name}}
+								</td>
+								<td>
+									{{section.departure.departure | connectionDate}}
+								</td>
+								<td>
+									dep {{section.departure.departure | connectionTime}}
+								</td>
+								<td>{{section.journey.name}}</td>
+							</tr>
+
+							<!-- passList -->
+							<tr ng-repeat="passItem in section.journey.passList.slice(1, section.journey.passList.length-1)" ng-show="connection.intermediateStopsShown">
+								<td>
+									{{passItem.location.name}}
+								</td>
+								<td></td>
+								<td>
+									dep {{passItem.departure | connectionTime}}
+								</td>
+								<td></td>
+							</tr>
+
+							<!-- arrival station -->
+							<tr style="color:green;">
+								<td>
 									{{section.arrival.location.name}}
 								</td>
 								<td>
-									{{section.departure.departure | connectionDate}}<br>
 									{{section.arrival.arrival | connectionDate}}
 								</td>
 								<td>
-									{{section.departure.departure | connectionTime}}<br>
-									{{section.arrival.arrival | connectionTime}}
+									arr {{section.arrival.arrival | connectionTime}}
 								</td>
-								<td>
-									{{section.journey.name}}
-								</td>
+								<td>&nbsp;</td>
 							</tr>
-
-							</tr>
+						</tbody>
+						<tfoot>
 							<tr>
 								<td colspan="4">
-									<a href="">show intermediate stops</a>
+									<a href="" ng-click="toggleIntermediateStops(connection)">
+										<span ng-hide="connection.intermediateStopsShown">show</span>
+										<span ng-show="connection.intermediateStopsShown">hide</span> intermediate stops</a>
 								</td>
 							</tr>
 							<tr>
@@ -87,8 +119,9 @@
 									runs: {{connection.service.regular}}
 								</td>
 							</tr>
-						</tbody>
+						</tfoot>
 					</table>
+
 
 				</td>
 			</tr>

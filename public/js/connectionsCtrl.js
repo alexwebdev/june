@@ -23,6 +23,10 @@ angular.module('juneApp')
 				});
 		};
 
+		$scope.toggleIntermediateStops = function(connection) {
+			connection.intermediateStopsShown = !connection.intermediateStopsShown;
+		};
+
 
 
 	});
