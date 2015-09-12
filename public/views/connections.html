@@ -21,14 +21,14 @@
 		<tbody>
 			<tr ng-repeat-start="connection in connections" class="conn-row">
 				<td>
-					<a href="" class="details-btn pull-left">
+					<a href="" class="details-btn pull-left" ng-class="{'open': connection.detailsVisible}" ng-click="toggleConnectionDetails(connection)">
 						<em class="st-icon st-icon-arrow-right"></em>
+						<div class="station-name-wrap pull-left">
+							{{connection.from.station.name}}
+							<br>
+							{{connection.to.station.name}}
+						</div>
 					</a>
-					<div class="station-name-wrap pull-left">
-						{{connection.from.station.name}}
-						<br>
-						{{connection.to.station.name}}
-					</div>
 				</td>
 				<td>
 					{{connection.from.departure | connectionDate}}
@@ -51,7 +51,7 @@
 				</td>
 			</tr>
 			<tr ng-repeat-end>
-				<td colspan="6">
+				<td colspan="6" ng-show="connection.detailsVisible">
 					<table class="table table-condensed subconn-table">
 						<thead>
 							<tr>

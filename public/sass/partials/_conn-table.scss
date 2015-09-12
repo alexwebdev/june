@@ -1,0 +1,104 @@
+.conn-table {
+	width: 100%;
+	background-color: #f2f2f2;
+
+	> tbody {
+		> tr {
+			> td {
+				border: none;
+			}
+
+			&.conn-row {
+				> td {
+					border-top: 2px solid #fff;
+				}
+			}
+		}
+	}
+
+	th {
+		background-color: #e4e4e4;
+	}
+
+	.details-btn, .station-name-wrap {
+		display: inline-block;
+	}
+
+	.details-btn {
+		padding-left: 20px;
+		position: relative;
+
+		.st-icon {
+			margin-top: -6px;
+			position: absolute;
+			left: 0;
+			top: 50%;
+		}
+
+		&.open {
+			.st-icon {
+				@include transform(rotate(90deg));
+			}
+		}
+	}
+
+
+}
+
+.subconn-table {
+	background-color: #fff;
+
+	> tbody {
+
+		.empty-row {
+			display: none;
+		}
+
+		+ tbody {
+			border: 0;
+
+			> tr {
+				&.empty-row {
+					display: table-row;
+
+					> td {
+						padding-left: 10px;
+
+						.transfer-time {
+							padding: 10px 10px;
+							border-left: 1px solid #000;
+						}
+					}
+				}
+			}
+		}
+
+		> tr {
+			border: 0;
+
+			> td {
+				padding-top: 0;
+				padding-bottom: 0;
+				border: none;
+			}
+		}
+	}
+
+	> tfoot {
+		> tr {
+			> td {
+				border: none;
+			}
+
+			&:first-child {
+				> td {
+					padding-top: 25px;
+				}
+			}
+		}
+	}
+
+	th {
+		background-color: #e4e4e4;
+	}
+}
