@@ -6,20 +6,36 @@ angular.module('juneApp')
 			to: 'Glogow'
 		};
 		$scope.connections = [];
+		$scope.searching = false;
 
 		$scope.search = function() {
-			console.log('searching...');
+			$scope.searching = true;
+			$scope.errors = [];
 
 
 			apiSrv.getConnections($scope.searchParams)
-				.then(function(results) {
+				.success(function(data) {
 
-					console.log('connections', results);
-					$scope.connections = results.data.connections;
+					$scope.searching = false;
+
+					if (data.connections.length === 0) {
+						$scope.errors.push({
+							content: 'No connections found',
+							type: 'info'
+						});
+						$scope.connections = [];
+					} else {
+						$scope.connections = data.connections;
+					}
 
 				})
-				.then(function(error) {
+				.error(function(error) {
 					console.log('error: ', error);
+					$scope.errors.push({
+						content: 'Error retreiving data',
+						type: 'danger'
+					});
+					$scope.connections = [];
 				});
 		};
 

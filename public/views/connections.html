@@ -1,4 +1,3 @@
-<div class="container">
 
 	<pre>{{searchParams | json}}</pre>
 	<form class="form-inline" ng-submit="search()">
@@ -7,7 +6,11 @@
 		<button type="submit" class="btn btn-primary">Search</button>
 	</form>
 
-	<table class="table conn-table">
+	<p class="text-center" ng-show="searching &amp;&amp; !errors.length"><br>Loading data...<br></p>
+
+	<p class="text-center bg-{{error.type}}" ng-repeat="error in errors">{{error.content}}</p>
+
+	<table class="table conn-table" ng-show="connections.length &amp;&amp; !errors.length">
 		<thead>
 			<tr>
 				<th>Station</th>
@@ -128,4 +131,3 @@
 		</tbody>
 	</table>
 
-</div>

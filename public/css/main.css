@@ -51,50 +51,50 @@ p {
   transform: rotate(90deg);
 }
 
-/* line 48, ../sass/partials/_conn-table.scss */
+/* line 46, ../sass/partials/_conn-table.scss */
 .subconn-table {
   background-color: #fff;
 }
-/* line 53, ../sass/partials/_conn-table.scss */
+/* line 51, ../sass/partials/_conn-table.scss */
 .subconn-table > tbody .empty-row {
   display: none;
 }
-/* line 57, ../sass/partials/_conn-table.scss */
+/* line 55, ../sass/partials/_conn-table.scss */
 .subconn-table > tbody + tbody {
   border: 0;
 }
-/* line 61, ../sass/partials/_conn-table.scss */
+/* line 59, ../sass/partials/_conn-table.scss */
 .subconn-table > tbody + tbody > tr.empty-row {
   display: table-row;
 }
-/* line 64, ../sass/partials/_conn-table.scss */
+/* line 62, ../sass/partials/_conn-table.scss */
 .subconn-table > tbody + tbody > tr.empty-row > td {
   padding-left: 10px;
 }
-/* line 67, ../sass/partials/_conn-table.scss */
+/* line 65, ../sass/partials/_conn-table.scss */
 .subconn-table > tbody + tbody > tr.empty-row > td .transfer-time {
   padding: 10px 10px;
   border-left: 1px solid #000;
 }
-/* line 76, ../sass/partials/_conn-table.scss */
+/* line 74, ../sass/partials/_conn-table.scss */
 .subconn-table > tbody > tr {
   border: 0;
 }
-/* line 79, ../sass/partials/_conn-table.scss */
+/* line 77, ../sass/partials/_conn-table.scss */
 .subconn-table > tbody > tr > td {
   padding-top: 0;
   padding-bottom: 0;
   border: none;
 }
-/* line 89, ../sass/partials/_conn-table.scss */
+/* line 87, ../sass/partials/_conn-table.scss */
 .subconn-table > tfoot > tr > td {
   border: none;
 }
-/* line 94, ../sass/partials/_conn-table.scss */
+/* line 92, ../sass/partials/_conn-table.scss */
 .subconn-table > tfoot > tr:first-child > td {
   padding-top: 25px;
 }
-/* line 101, ../sass/partials/_conn-table.scss */
+/* line 99, ../sass/partials/_conn-table.scss */
 .subconn-table th {
   background-color: #e4e4e4;
 }
