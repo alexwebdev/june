@@ -1,12 +1,15 @@
 angular.module('juneApp')
-	.controller('connectionsCtrl', function($scope, apiSrv) {
+	.controller('connectionsCtrl', function($scope, apiSrv, searchParamsSrv) {
 
-		$scope.searchParams = {
-			from: 'Warsaw',
-			to: 'Glogow'
-		};
+		console.log('hello. params:', searchParamsSrv.getParams());
+
+		$scope.searchParams = searchParamsSrv.getParams();
 		$scope.connections = [];
 		$scope.searching = false;
+
+
+
+
 
 		$scope.search = function() {
 			$scope.searching = true;
@@ -50,5 +53,6 @@ angular.module('juneApp')
 		};
 
 
+		if ($scope.searchParams.from && $scope.searchParams.to) $scope.search();
 
 	});

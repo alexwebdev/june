@@ -16,7 +16,8 @@ angular.module('juneApp', ['ngResource', 'ngRoute', 'autocomplete'])
 		});
 
 		$routeProvider.otherwise({
-			templateUrl: '/views/home.html'
+			templateUrl: '/views/home.html',
+			controller: 'homeCtrl'
 		});
 	})
 
