@@ -16,6 +16,8 @@ angular.module('juneApp')
 			apiSrv.getConnections($scope.searchParams)
 				.success(function(data) {
 
+					console.log('connections',data);
+
 					$scope.searching = false;
 
 					if (data.connections.length === 0) {

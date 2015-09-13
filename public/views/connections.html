@@ -59,6 +59,7 @@
 						<thead>
 							<tr>
 								<th>Station</th>
+								<th>Platform</th>
 								<th>Date</th>
 								<th>Time</th>
 								<th>Products</th>
@@ -74,6 +75,7 @@
 								<td>
 									{{section.departure.location.name}}
 								</td>
+								<td>{{section.departure.platform}}</td>
 								<td>
 									{{section.departure.departure | connectionDate}}
 								</td>
@@ -89,6 +91,7 @@
 									{{passItem.location.name}}
 								</td>
 								<td></td>
+								<td></td>
 								<td>
 									dep {{passItem.departure | connectionTime}}
 								</td>
@@ -100,6 +103,7 @@
 								<td>
 									{{section.arrival.location.name}}
 								</td>
+								<td>{{section.arrival.platform}}</td>
 								<td>
 									{{section.arrival.arrival | connectionDate}}
 								</td>
